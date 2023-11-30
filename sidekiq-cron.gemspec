@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
     "sidekiq-cron.gemspec",
   ]
 
-  s.required_ruby_version = ">= 2.7"
+  s.required_ruby_version = ">= 2.6"
 
   s.add_dependency("fugit", "~> 1.8")
   s.add_dependency("sidekiq", ">= 6")
