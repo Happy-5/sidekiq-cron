@@ -531,7 +531,7 @@ module Sidekiq
 
       # Remove "removed jobs" between current jobs and new jobs
       def self.destroy_removed_jobs new_job_names
-        current_job_names = Sidekiq::Cron::Job.all.filter_map { |j| j.name if j.source == "schedule" }
+        current_job_names = Sidekiq::Cron::Job.all.map { |j| j.name if j.source == "schedule" }.compact
         removed_job_names = current_job_names - new_job_names
         removed_job_names.each { |j| Sidekiq::Cron::Job.destroy(j) }
         removed_job_names
