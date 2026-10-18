@@ -253,8 +253,8 @@ second_job:
 
 There are multiple ways to load the jobs from a YAML file
 
-1. The gem will automatically load the jobs mentioned in `config/schedule.yml` file (it supports ERB)
-2. When you want to load jobs from a different filename, mention the filename in sidekiq configuration, i.e. `cron_schedule_file: "config/users_schedule.yml"`
+1. **This Happy-5 fork does not load a schedule file on its own.** Upstream loads `config/schedule.yml` (with ERB) on every Sidekiq server boot, with the destructive `load_from_hash!`, so it deletes every `schedule` job an application loaded from any other file. To keep that behaviour, `require "sidekiq/cron/schedule_loader"` yourself.
+2. With `sidekiq/cron/schedule_loader` required, a different filename can be set in the sidekiq configuration, i.e. `cron_schedule_file: "config/users_schedule.yml"`
 3. Load the file manually as follows:
 
 ```ruby

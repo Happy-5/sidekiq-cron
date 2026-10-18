@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased (Happy-5 fork)
+
+- `require "sidekiq/cron"` no longer loads `sidekiq/cron/schedule_loader`. The application owns schedule loading, so the gem cannot run a second, partial, destructive `load_from_hash!` on server boot. Require `sidekiq/cron/schedule_loader` explicitly to keep the upstream behaviour.
+
 ## 1.11.0
 
 - Differentiates b/w "schedule" vs "dynamic" jobs (https://github.com/sidekiq-cron/sidekiq-cron/pull/431)
